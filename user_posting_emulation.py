@@ -57,23 +57,29 @@ def run_infinite_post_data_loop():
                 user_result = dict(row._mapping)
             
             pin_payload = json.dumps({
-                "index": pin_result["index"],
-                "unique_id": pin_result["unique_id"],
-                "title": pin_result["title"],
-                "description": pin_result["description"],
-                "poster_name": pin_result["poster_name"],
-                "follower_count": pin_result["follower_count"],
-                "tag_list": pin_result["tag_list"],
-                "is_image_or_video": pin_result["is_image_or_video"],
-                "image_src": pin_result["image_src"],
-                "downloaded": pin_result["downloaded"],
-                "save_location": pin_result["save_location"],
-                "category": pin_result["category"]  
+                "records": [
+                    {
+                        "value":{
+                        "index": pin_result["index"],
+                        "unique_id": pin_result["unique_id"],
+                        "title": pin_result["title"],
+                        "description": pin_result["description"],
+                        "poster_name": pin_result["poster_name"],
+                        "follower_count": pin_result["follower_count"],
+                        "tag_list": pin_result["tag_list"],
+                        "is_image_or_video": pin_result["is_image_or_video"],
+                        "image_src": pin_result["image_src"],
+                        "downloaded": pin_result["downloaded"],
+                        "save_location": pin_result["save_location"],
+                        "category": pin_result["category"]}
+                    }
+                ]
             })
             headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
-            response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/test/topics/0e95b18877fd.pin", headers=headers, data=pin_payload)
+            response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/topics/0e95b18877fd.pin", headers=headers, data=pin_payload)
 
             print(response)
+            print(pin_payload)
             
             # OLD BLOCK FOR REFERENCE ONLY -----
             

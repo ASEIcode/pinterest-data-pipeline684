@@ -35,7 +35,6 @@ def run_infinite_post_data_loop():
         sleep(random.randrange(0, 2))
         random_row = random.randint(0, 11000)
         engine = new_connector.create_db_connector()
-        
 
         with engine.connect() as connection:
 
@@ -57,12 +56,34 @@ def run_infinite_post_data_loop():
             for row in user_selected_row:
                 user_result = dict(row._mapping)
             
-            print(pin_result)
-            print(geo_result)
-            print(user_result)
-            
+            pin_payload = json.dumps({
+                "index": pin_result["index"],
+                "unique_id": pin_result["unique_id"],
+                "title": pin_result["title"],
+                "description": pin_result["description"],
+                "poster_name": pin_result["poster_name"],
+                "follower_count": pin_result["follower_count"],
+                "tag_list": pin_result["tag_list"],
+                "is_image_or_video": pin_result["is_image_or_video"],
+                "image_src": pin_result["image_src"],
+                "downloaded": pin_result["downloaded"],
+                "save_location": pin_result["save_location"],
+                "category": pin_result["category"]  
+            })
+            headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
+            response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/test/topics/0e95b18877fd.pin", headers=headers, data=pin_payload)
 
-        
+            print(response)
+            
+            # OLD BLOCK FOR REFERENCE ONLY -----
+            
+            #print(f"PIN RESULT: \n {pin_result}")
+            #requests.request("POST",invoke_url + "/test/topics/0e95b18877fd.pin", data=pin_result)
+            #print(f"GEO RESULT: \n {geo_result}")
+            #requests.request("POST",invoke_url + "/test/topics/0e95b18877fd.geo", data=geo_result)
+            #print(f"USER RESULT: {user_result}")
+            #requests.request("POST",invoke_url + "/test/topics/0e95b18877fd.user", data=user_result)            
+
 
 
 if __name__ == "__main__":

@@ -82,21 +82,36 @@ def run_infinite_post_data_loop():
                 ]
             })
             headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
-            response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/topics/0e95b18877fd.pin", headers=headers, data=pin_payload)
+            pin_response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/topics/0e95b18877fd.pin", headers=headers, data=pin_payload)
 
-            print(response)
-            print(pin_payload)
+            geo_payload = json.dumps({
+                "records": [
+                    {
+                        "value":{
+                        "ind": geo_result["ind"],
+                        "timestamp": geo_result["timestamp"], # may have to convert this to a string and have it converted back later?
+                        "latitude": geo_result["latitude"],
+                        "longitude": geo_result["longitude"],
+                        "country": geo_result["country"]}
+                    }
+                ]
+            }, default=str)
+
+            geo_response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/topics/0e95b18877fd.geo", headers=headers, data=geo_payload)
             
-            # OLD BLOCK FOR REFERENCE ONLY -----
-            
-            #print(f"PIN RESULT: \n {pin_result}")
-            #requests.request("POST",invoke_url + "/test/topics/0e95b18877fd.pin", data=pin_result)
-            #print(f"GEO RESULT: \n {geo_result}")
-            #requests.request("POST",invoke_url + "/test/topics/0e95b18877fd.geo", data=geo_result)
-            #print(f"USER RESULT: {user_result}")
-            #requests.request("POST",invoke_url + "/test/topics/0e95b18877fd.user", data=user_result)            
-
-
+            user_payload = json.dumps({
+                "records": [
+                    {
+                        "value":{
+                        "index": user_result["ind"],
+                        "first_name": user_result["first_name"],
+                        "last_name": user_result["last_name"],
+                        "age": user_result["age"],
+                        "date_joined": user_result["date_joined"]}
+                    }
+                ]
+            }, default=str)
+            user_response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/topics/0e95b18877fd.user", headers=headers, data=user_payload) 
 
 if __name__ == "__main__":
     run_infinite_post_data_loop()

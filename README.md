@@ -103,3 +103,17 @@ To run a consumer for each topic:
         pin_response = requests.request("POST","https://jl1y5b7yai.execute-api.us-east-1.amazonaws.com/dev/topics/0e95b18877fd.pin", headers=headers, data=pin_payload)
 
 
+- New databricks files and actions
+
+    - Mount_s3 notebook created
+        - mounts the S3 bucket where our .pin / .geo / .user topics are storing the posts as Json files
+        - access keys were created for us and ssafe loaded from "dbfs:/user/hive/warehouse/authentication_credentials"
+        - mounted at: "/mnt/0e95b18877fd-S3"
+
+    - create_s3_dataframes notebook created
+        - accesses each topic in the s3 bucket and reads all of the json files into a dataframe
+            - df_pin
+            - df_geo
+            - df_user
+        - Verifys that these have been uploaded correctly but calling display(df_xxx.describe()) for each
+        

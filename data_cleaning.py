@@ -1,9 +1,13 @@
 # Databricks notebook source
+# MAGIC %md # Data Cleaning Notebook
+
+# COMMAND ----------
+
 # MAGIC %run "/Workspace/Repos/adamevansjs@gmail.com/pinterest-data-pipeline684/create_s3_dataframes"
 
 # COMMAND ----------
 
-# MAGIC %md # Cleaning df_pin
+# MAGIC %md ## Cleaning df_pin
 
 # COMMAND ----------
 
@@ -31,8 +35,55 @@ df_pin = df_pin.withColumn("downloaded", df_pin["downloaded"].cast("int"))
 #reorder columns
 df_pin = df_pin.select("ind", "unique_id", "title", "description", "follower_count", "poster_name", "tag_list", "is_image_or_video", "image_src", "save_location", "category")
 
-
-
 # COMMAND ----------
 
 display(df_pin)
+
+# COMMAND ----------
+
+# MAGIC %md ## Cleaning df_geo
+
+# COMMAND ----------
+
+from pyspark.sql.functions import array
+from pyspark.sql.functions import to_timestamp
+
+# add a coordinates column from an array of lat and long
+df_geo = df_geo.withColumn("coordinates", array("latitude", "longitude"))
+
+# cast the timestamp column to a timestamp dtype
+df_geo = df_geo.withColumn("timestamp", to_timestamp("timestamp"))
+
+# reorder columns
+df_geo = df_geo.select("ind", "country", "coordinates", "timestamp")
+
+# COMMAND ----------
+
+display(df_geo)
+
+# COMMAND ----------
+
+# MAGIC %md ## Cleaning df_user
+
+# COMMAND ----------
+
+from pyspark.sql.functions import concat, lit
+
+# concatenate first_name and last_name into username and drop old columns
+df_user = df_user.withColumn("user_name", concat("first_name", lit((" ")), "last_name"))
+df_user = df_user.drop("first_name", "last_name")
+
+# cast date_joined to timestamp dtype
+df_user = df_user.withColumn("date_joined", to_timestamp("date_joined"))
+
+# COMMAND ----------
+
+# rename index to ind
+df_user = df_user.withColumnRenamed("index", "ind")
+
+# reorder columns
+df_user = df_user.select("ind", "user_name", "age", "date_joined")
+
+# COMMAND ----------
+
+display(df_user)

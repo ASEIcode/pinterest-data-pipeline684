@@ -116,4 +116,13 @@ To run a consumer for each topic:
             - df_geo
             - df_user
         - Verifys that these have been uploaded correctly but calling display(df_xxx.describe()) for each
+    
+    - Data_exploration_xxx notebooks
+        The three data exploration notebooks (one of each dataframe) walk through exploring the data to find errors and appropriate cleaning code for each dataframe. The code from the end of each of these notebooks was then finalised and added to the main data_cleaning notebook.
+    
+    - Data_cleaning
+        This notebook contains all the final code to clean the data in each of the three dataframes
+    
+    - Queries
+        This notebook contains a set of useful example queries and their resulting tables ready for BA tasks.
         

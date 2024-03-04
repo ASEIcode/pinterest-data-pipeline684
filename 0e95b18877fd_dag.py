@@ -27,9 +27,9 @@ default_args = {
 
 with DAG('0e95b18877fd_dag',
     # should be a datetime format
-    start_date= datetime(2024, 3, 2)
+    start_date= datetime(2024, 3, 2),
     # check out possible intervals, should be a string
-    schedule_interval='@hourly',
+    schedule_interval="@daily",
     catchup=True,
     default_args=default_args
     ) as dag:

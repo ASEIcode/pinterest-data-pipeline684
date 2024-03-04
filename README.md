@@ -125,4 +125,14 @@ To run a consumer for each topic:
     
     - Queries
         This notebook contains a set of useful example queries and their resulting tables ready for BA tasks.
+
+    - 0e95b18877fd_dag.py
+        This DAG runs the datacleaning notebook using the databricks cluster referenced within the file. 
+        To run the DAG manually:
+            1. Log into AWS
+            2. Seach for MWAA
+            3. Locate and click on your airflow envoronment (ours is Databricks-Airflow-env)
+            4. Click "Open Airflow UI" in the top right corner
+            5. search for this dag by its name
+            6. Click the play symbol on the right hand side to manually run the DAG
         

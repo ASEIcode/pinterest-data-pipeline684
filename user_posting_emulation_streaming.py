@@ -64,7 +64,7 @@ def run_infinite_post_data_loop():
             
             pin_payload = json.dumps({
                 "StreamName": "streaming-0e95b18877fd-pin",
-                "records": {
+                "data": {
                         "index": pin_result["index"],
                         "unique_id": pin_result["unique_id"],
                         "title": pin_result["title"],
@@ -101,7 +101,7 @@ def run_infinite_post_data_loop():
             
             user_payload = json.dumps({
                 "StreamName": "streaming-0e95b18877fd-user",
-                "records": 
+                "data": 
                     {
                         "index": user_result["ind"],
                         "first_name": user_result["first_name"],

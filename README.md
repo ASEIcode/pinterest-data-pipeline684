@@ -1,5 +1,38 @@
 # Pintrest Data Pipeline
 
+## Project structure
+
+- **pintrest-data-pipeline684**  
+
+    - **batch_notebooks**
+        - **data_exploration_notebooks**  
+            Step by step exploration of each dataframe.  
+            Used to construct the final code implemented in *data_cleaning*
+            - data_exploration_geo
+            - data_exploration_pin
+            - data_exploration_user  
+        - 0e95b18877fd_dag.py  
+
+        - create_dataframes_from_s3  
+        *Creating the 3 dataframes from the batch data stored in s3*
+        - data_cleaning  
+        *Contains the final cleaning code for each dataframe in the batch*
+        - mount_s3_to_databricks  
+        *Use once only to mount the s3 bucket to databricks*
+    - **stream_notebooks**
+        - data_cleaning_stream
+        - read_stream
+    - **user_post_emulators**
+        - user_posting_emulation.py
+        - user_posting_emulations.py:Zone.Identifier
+        - user_posting_emulation_streaming.py
+    - .gitignore
+    - Queries
+    - README.md
+    
+
+
+
 ## Rough notes to be made into readme later:
 
 ### Useful commands:

@@ -121,10 +121,6 @@ df_pin = df_pin.select("ind", "unique_id", "title", "description", "follower_cou
 
 # COMMAND ----------
 
-display(df_pin)
-
-# COMMAND ----------
-
 # MAGIC %md ### Cleaning df_geo
 
 # COMMAND ----------
@@ -140,10 +136,6 @@ df_geo = df_geo.withColumn("timestamp", to_timestamp("timestamp"))
 
 # reorder columns
 df_geo = df_geo.select("ind", "country", "coordinates", "timestamp")
-
-# COMMAND ----------
-
-display(df_geo)
 
 # COMMAND ----------
 
@@ -170,21 +162,19 @@ df_user = df_user.select("ind", "user_name", "age", "date_joined")
 
 # COMMAND ----------
 
-display(df_user)
-
-# COMMAND ----------
-
 # MAGIC %md ## Write to Delta Tables
 
 # COMMAND ----------
 
-def write_to_delta_table(dataframe: str, table_name: str):
+def write_to_delta_table(dataframe: str, table_name: str, pool: str):
     """
     Takes a dataframe and writes it to a delta table.
     Args:
         dataframe (dataframe): The dataframe to be written to the delta table
         table_name (str): The desired name for your new Delta table
+        pool (str): E.g. pool1 / pool2. Set the scheduler pool for your stream. Use separate pools to support concurrent writes
     """
+    spark.sparkContext.setLocalProperty("spark.scheduler.pool", pool)
     dataframe.writeStream \
     .format("delta") \
     .outputMode("append") \
@@ -194,12 +184,6 @@ def write_to_delta_table(dataframe: str, table_name: str):
 
 # COMMAND ----------
 
-write_to_delta_table(df_pin, "0e95b18877fd_pin_table")
-
-# COMMAND ----------
-
-write_to_delta_table(df_geo, "0e95b18877fd_geo_table")
-
-# COMMAND ----------
-
-write_to_delta_table(df_user, "0e95b18877fd_user_table")
+write_to_delta_table(df_pin, "0e95b18877fd_pin_table", "pool1")
+write_to_delta_table(df_geo, "0e95b18877fd_geo_table", "pool2")
+write_to_delta_table(df_user, "0e95b18877fd_user_table", "pool3")

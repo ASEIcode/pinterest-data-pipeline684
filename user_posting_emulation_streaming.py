@@ -64,7 +64,7 @@ def run_infinite_post_data_loop():
             
             pin_payload = json.dumps({
                 "StreamName": "streaming-0e95b18877fd-pin",
-                "data": {
+                "Data": {
                         "index": pin_result["index"],
                         "unique_id": pin_result["unique_id"],
                         "title": pin_result["title"],
@@ -101,7 +101,7 @@ def run_infinite_post_data_loop():
             
             user_payload = json.dumps({
                 "StreamName": "streaming-0e95b18877fd-user",
-                "data": 
+                "Data": 
                     {
                         "index": user_result["ind"],
                         "first_name": user_result["first_name"],
@@ -116,10 +116,4 @@ def run_infinite_post_data_loop():
 
 if __name__ == "__main__":
     run_infinite_post_data_loop()
-    print('Working')
-    
-
-
-    
-
-
+    print('Working') 

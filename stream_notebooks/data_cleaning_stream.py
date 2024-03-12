@@ -7,7 +7,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run "/Workspace/Repos/adamevansjs@gmail.com/pinterest-data-pipeline684/read_stream"
+# MAGIC %run "/Workspace/Repos/adamevansjs@gmail.com/pinterest-data-pipeline684/stream_notebooks/read_stream"
 
 # COMMAND ----------
 

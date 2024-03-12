@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "/Workspace/Repos/adamevansjs@gmail.com/pinterest-data-pipeline684/create_s3_dataframes"
+# MAGIC %run "/Workspace/Repos/adamevansjs@gmail.com/pinterest-data-pipeline684/batch_notebooks/create_dataframes_from_s3"
 
 # COMMAND ----------
 

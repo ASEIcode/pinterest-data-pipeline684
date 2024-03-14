@@ -127,6 +127,13 @@ After ensuring all prerequisites are in place, you can proceed to the installati
 
     - **Create an S3 bucket for data storage**. See https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html for instructions.
 
+    - **Upload tables of Dummy Data to RDS**
+
+        To enable you to use all of the data_cleaning and query notebooks I have provided isntructions on how to create RDS tables that mirror my own structure along with some dummy data to get you started:
+
+        [Instructions and dummy data](https://colab.research.google.com/drive/10nomdkaryd95so32EHu4bqzx96lmnmb8?usp=sharing)
+      
+
     - **Establish an MSK cluster and set up an EC2 client machine for Kafka:**
         https://colab.research.google.com/drive/1gYFc5W_TILdgDMprHXgwmjrY_xTmwsGS#scrollTo=Xk8JoWRrzZeq
         - Create your topics:
@@ -135,7 +142,8 @@ After ensuring all prerequisites are in place, you can proceed to the installati
 
           `./kafka-topics.sh --bootstrap-server BootstrapServerString --command-config client.properties --create --topic <topic_name>` 
 
-          This projects files use 3 topics (< userID >.pin, < userID >.geo & < userID >.user) which are being generated from 3 different RDS tables. You can replace these with your own tables and topics. One for each data source / table. Ensure if you do that you replace/alter the above topic names with the new ones wherever they appear in the code files.
+          This projects files use 3 topics (< userID >.pin, < userID >.geo & < userID >.user with the current user ID being: "0e9518877fd") which are being generated from 3 different RDS tables. To make the installation and modification of the scripts as simple as possible, try to copy these to your own environment and scripts. Many of the variables and functions are also named after them, so there would be many references to update if you choose to change them.
+
 
     - **Create a custom Plugin with MSK connect:**
       

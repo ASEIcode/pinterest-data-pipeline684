@@ -80,6 +80,8 @@ pinterest-data-pipeline684/
 
 ## Architecture
 
+![a-diagram-of-the-pintrest-architechure](/images/CloudPinterestPipeline.png)
+
 ### Batch processing path
 
 1. **Data Generation with User Posting Emulator:** The journey begins with the user posting emulator, which simulates user activities such as creating posts, comments, or likes. This tool generates synthetic data mimicking real user interactions on the platform.

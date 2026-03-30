@@ -1,7 +1,6 @@
 import requests
 from time import sleep
 import random
-from multiprocessing import Process
 import json
 import sqlalchemy
 from sqlalchemy import text

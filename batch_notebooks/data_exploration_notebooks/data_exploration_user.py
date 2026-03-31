@@ -95,7 +95,7 @@ df_user = df_user.drop("first_name", "last_name")
 df_user = df_user.withColumn("date_joined", to_timestamp("date_joined"))
 
 # rename index to ind
-d_user = df_user.withColumnRenamed("index", "ind")
+df_user = df_user.withColumnRenamed("index", "ind")
 
 # reorder columns
 df_user = df_user.select("ind", "user_name", "age", "date_joined")

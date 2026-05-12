@@ -32,10 +32,7 @@ An end-to-end data engineering pipeline built on AWS, inspired by Pinterest's in
 
 ### Video Walkthrough
 
-<!-- LOOM VIDEO PLACEHOLDER — paste embed link here once recorded -->
-<!-- Example: [![Loom Walkthrough](https://cdn.loom.com/sessions/thumbnails/YOUR-ID-HERE.gif)](https://www.loom.com/share/YOUR-ID-HERE) -->
-
-*A short walkthrough of the architecture and data flow coming soon.*
+[![Walkthrough of my End-to-End Pinterest Data Pipeline](https://cdn.loom.com/sessions/thumbnails/5cc6f009657b4156af9feb7fb5860615-2b0271e4e8fdc5af-full-play.gif)](https://www.loom.com/share/5cc6f009657b4156af9feb7fb5860615)
 
 ---
 
